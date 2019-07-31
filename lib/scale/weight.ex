@@ -19,7 +19,7 @@ defmodule Scale.Weight do
     with {:decimal_parsing, {:ok, weight}} <- {:decimal_parsing, Decimal.parse(raw_weight)},
          {:unit_parsing, {:ok, units}} <- {:unit_parsing, Map.fetch(@units, raw_units)},
          stable <- stable_bit == "0",
-         {:validity, true} <- {:validity, stable && weight != Decimal.new(0)} do
+         {:validity, true} <- {:validity, stable && !Decimal.eq?(weight, Decimal.new(0))} do
       struct!(__MODULE__, %{
         weight: weight,
         units: units,
