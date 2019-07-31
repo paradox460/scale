@@ -3,7 +3,9 @@ defmodule Scale.Reader do
 
   use GenServer
 
-  @serial_device "/dev/cu.usbserial"
+  @serial_device if Application.get_env(:scale, :test),
+                   do: "/dev/master",
+                   else: Application.get_env(:scale, :device)
 
   def start_link(init) do
     GenServer.start_link(__MODULE__, init, name: __MODULE__)
