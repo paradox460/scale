@@ -1,6 +1,8 @@
 import Config
 
 config :scale,
-  device: "/dev/cu.usbserial"
+  # device: "/dev/cu.usbserial",
+  device: "/dev/master",
+  dummy: true
 
-# test: true
+import_config "#{Mix.env()}.exs"

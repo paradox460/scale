@@ -10,7 +10,7 @@ defmodule Scale.Application do
     ]
 
     children =
-      if Application.get_env(:scale, :test) do
+      if Application.get_env(:scale, :dummy) do
         [
           %{
             id: Scale.DummyScale,

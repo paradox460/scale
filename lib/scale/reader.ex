@@ -3,9 +3,7 @@ defmodule Scale.Reader do
 
   use GenServer
 
-  @serial_device if Application.get_env(:scale, :test),
-                   do: "/dev/master",
-                   else: Application.get_env(:scale, :device)
+  @serial_device Application.get_env(:scale, :device)
 
   def start_link(init) do
     GenServer.start_link(__MODULE__, init, name: __MODULE__)
@@ -37,7 +35,7 @@ defmodule Scale.Reader do
     # volume, can be a bottleneck.
     receive do
       {:circuits_uart, @serial_device, msg} when msg not in ["", "?\r"] ->
-        structured_weight = Weight.parse(msg)
+        {:ok, structured_weight} = Weight.parse(msg)
         {:reply, structured_weight, state}
     after
       1_000 -> {:reply, "no weight found", state}
