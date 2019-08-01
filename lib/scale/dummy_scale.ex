@@ -5,7 +5,9 @@ defmodule Scale.DummyScale do
   Can be set to return empty values, error values, and such via state changes. See functions for details
   """
 
-  @serial_device "/dev/slave"
+  use GenServer
+
+  @serial_device "/dev/master"
 
   def start_link(init) do
     GenServer.start_link(__MODULE__, init, name: __MODULE__)
