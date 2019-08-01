@@ -35,8 +35,7 @@ defmodule Scale.Reader do
     # volume, can be a bottleneck.
     receive do
       {:circuits_uart, @serial_device, msg} when msg not in ["", "?\r"] ->
-        {:ok, structured_weight} = Weight.parse(msg)
-        {:reply, structured_weight, state}
+        {:reply, Weight.parse(msg), state}
     after
       1_000 -> {:reply, "no weight found", state}
     end

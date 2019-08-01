@@ -24,9 +24,16 @@ defmodule Scale.ReaderTest do
 
     test "parses a response and returns a weight", %{uart: uart} do
       stable_weight_raw = <<32>> <> "042.42LB" <> <<13>> <> "00" <> <<3>>
-      expected_weight = %Scale.Weight{stable: true, units: :lbs, weight: Decimal.new("42.42")}
+      expected_weight = {:ok, %Scale.Weight{stable: true, units: :lbs, weight: Decimal.new("42.42")}}
       Circuits.UART.write(uart, stable_weight_raw)
       assert ^expected_weight = GenServer.call(Reader, :get_weight)
+    end
+
+    test "handles error cases from weight", %{uart: uart} do
+      zero_weight_raw = <<32>> <> "000.00LB" <> <<13>> <> "00" <> <<3>>
+      expected_error = {:error, "Scale reads 0 or unstable weight"}
+      Circuits.UART.write(uart, zero_weight_raw)
+      assert ^expected_error = GenServer.call(Reader, :get_weight)
     end
   end
 end
