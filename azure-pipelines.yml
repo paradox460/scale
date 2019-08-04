@@ -11,7 +11,7 @@ pool:
 
 steps:
 - script: |
-    sudo apt-get install elixir
+    sudo apt-get install erlang elixir
     mix local.rebar --force
     mix local.hex --force
     mix deps.get
