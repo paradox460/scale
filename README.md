@@ -1,5 +1,5 @@
 # Scale
-Service for reading data from Mettler Toledo Scales
+Service for reading data from FedEx protocol Scales. It has been tested with Mettler Toledo PS scales, but should work for any scale compatible with the FedEx protocol. More protocol support may eventually be added
 
 ## Installation
 1. Clone the repo
@@ -19,6 +19,7 @@ Currently Scales need to be configured with the following settings
 
 
 ### Checking/Changing Mettler Toledo scale settings
+These instructions are for Mettler Toledo PS scales.
 1. Press and hold the Units (two circular arrows) symbol for 10 seconds, until the scale displays `SETuP?`
 2. Press the Units key until `BAud` is shown on the display
 3. Press the Units (two arrows pointing to a `0`) key to view the baud. If it is not at `9600`, press the Zero button until it reads `9600`.
