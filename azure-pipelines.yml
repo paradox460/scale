@@ -17,6 +17,7 @@ steps:
 - script: "docker run --rm -v $(Build.SourcesDirectory):/app scale"
   displayName: "Run tests"
 - task: PublishTestResults@2
+  condition: always()
   inputs:
     testResultsFormat: 'jUnit'
     testResultsFiles: "$(Build.SourcesDirectory)/_build/test/lib/scale/test-junit-report.xml"
