@@ -12,5 +12,5 @@ pool:
 steps:
 - script: |
     docker build . -t scale
-    docker run -it --rm -v $(PWD):/app scale
+    docker run -it --rm -v $(Pipeline.Workspace):/app scale
   displayName: 'Run tests in docker'
