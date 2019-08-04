@@ -1,3 +1,4 @@
+[![Board Status](https://dev.azure.com/paradox460/96028d34-2159-47b4-987c-347729ba5a27/eb6f9b08-f047-4f90-bb2e-848411ca065f/_apis/work/boardbadge/19331ee4-38fa-4782-b595-9242d1fd3ffa)](https://dev.azure.com/paradox460/96028d34-2159-47b4-987c-347729ba5a27/_boards/board/t/eb6f9b08-f047-4f90-bb2e-848411ca065f/Microsoft.RequirementCategory)
 # Scale
 Service for reading data from FedEx protocol Scales. It has been tested with Mettler Toledo PS scales, but should work for any scale compatible with the FedEx protocol. More protocol support may eventually be added
 
