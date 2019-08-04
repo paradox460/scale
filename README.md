@@ -1,6 +1,8 @@
 # Scale
 Service for reading data from FedEx protocol Scales. It has been tested with Mettler Toledo PS scales, but should work for any scale compatible with the FedEx protocol. More protocol support may eventually be added
 
+[![Build Status](https://dev.azure.com/paradox460/Scale/_apis/build/status/paradox460.scale?branchName=master)](https://dev.azure.com/paradox460/Scale/_build/latest?definitionId=4&branchName=master)
+
 ## Installation
 1. Clone the repo
 2. `mix deps.get`
