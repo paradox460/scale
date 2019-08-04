@@ -32,7 +32,7 @@ defmodule Scale.Reader do
       {:circuits_uart, @serial_device, msg} when msg not in ["", "?\r"] ->
         {:reply, Weight.parse(msg), state}
     after
-      1_000 -> {:reply, "no weight found", state}
+      2_000 -> {:reply, {:error, "no weight or scale found"}, state}
     end
   end
 
