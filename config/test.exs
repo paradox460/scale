@@ -2,4 +2,5 @@ import Config
 
 config :scale,
   device: "/dev/master",
-  dummy: false
+  dummy: false,
+  loopback_device: "/dev/slave"

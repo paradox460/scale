@@ -7,7 +7,7 @@ defmodule Scale.DummyScale do
 
   use GenServer
 
-  @serial_device Application.get_env(:scale, :dummy_device)
+  @serial_device Application.get_env(:scale, :loopback_device)
 
   def start_link(init) do
     GenServer.start_link(__MODULE__, init, name: __MODULE__)

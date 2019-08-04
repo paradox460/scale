@@ -7,7 +7,7 @@ defmodule Scale.ReaderTest do
       {:ok, uart} = Circuits.UART.start_link()
 
       :ok =
-        Circuits.UART.open(uart, "/dev/slave",
+        Circuits.UART.open(uart, Application.get_env(:scale, :loopback_device),
           speed: 9600,
           data_bits: 8,
           framing: Circuits.UART.Framing.Line,
