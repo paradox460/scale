@@ -12,5 +12,7 @@ pool:
 steps:
 - script: |
     docker build . -t scale
-    docker run -it --rm -v $(Pipeline.Workspace):/app scale
-  displayName: 'Run tests in docker'
+    echo $(Pipeline.Workspace)
+  displayName: 'Prepare docker image'
+- script: "docker run -it --rm -v $(Pipeline.Workspace):/app scale"
+  displayName: "Run tests"
