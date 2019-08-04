@@ -16,3 +16,7 @@ steps:
   displayName: 'Prepare docker image'
 - script: "docker run --rm -v $(Build.SourcesDirectory):/app scale"
   displayName: "Run tests"
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'jUnit'
+    testResultsFiles: "$(Build.SourcesDirectory)/_build/test/lib/scale/test-junit-report.xml"
