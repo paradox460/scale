@@ -1,0 +1,21 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: |
+    sudo apt-get install elixir
+    mix local.rebar --force
+    mix local.hex --force
+    mix deps.get
+  displayName: 'Install Elixir'
+
+- script: "mix test"
+  displayName: 'Run tests'
