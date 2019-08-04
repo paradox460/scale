@@ -14,5 +14,7 @@ steps:
     docker build . -t scale
     echo $(Pipeline.Workspace)
   displayName: 'Prepare docker image'
+- script: "ls -lah $(Build.SourcesDirectory)"
+  displayName: "Debug show files"
 - script: "docker run -it --rm -v $(Build.SourcesDirectory):/app scale"
   displayName: "Run tests"
