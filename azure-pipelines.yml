@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: |
+    docker build . -t scale
+    echo $(Pipeline.Workspace)
+  displayName: 'Prepare docker image'
+- script: "docker run --rm -v $(Build.SourcesDirectory):/app scale"
+  displayName: "Run tests"
+- task: PublishTestResults@2
+  condition: always()
+  inputs:
+    testResultsFormat: 'jUnit'
+    testResultsFiles: "$(Build.SourcesDirectory)/_build/test/lib/scale/test-junit-report.xml"
