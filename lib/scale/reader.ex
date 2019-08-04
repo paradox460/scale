@@ -24,11 +24,6 @@ defmodule Scale.Reader do
   end
 
   @impl true
-  # Drain to prevent the mailbox from filling up with useless serial noise
-  def handle_info({:circuits_uart, @serial_device, msg}, state) when msg in ["", "?\r"],
-    do: {:noreply, state}
-
-  @impl true
   def handle_call(:get_weight, _from, %{uart: uart} = state) do
     Circuits.UART.write(uart, "W\r")
     # Note that this is a selective recieve, and on systems with large message
